@@ -6,11 +6,13 @@ import MoviesPage from './page/movies/MoviesPage'
 import MovieDetailPage from './page/movieDetail/MovieDetailPage'
 import NotFoundPage from './page/notFoundPage/NotFoundPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
 
   return (
     <>
+      <Analytics></Analytics>
       <Routes>
         <Route path='/' element={<AppLayout></AppLayout>}>
           <Route index element={<HomePage></HomePage>}></Route>
