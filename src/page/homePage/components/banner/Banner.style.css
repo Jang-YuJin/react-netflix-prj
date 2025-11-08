@@ -1,3 +1,8 @@
+.banner-container{
+    width: 95vw;
+    border-radius: 30px;
+}
+
 .banner-img{
     height: 80vh;
     background-size: cover;
@@ -13,7 +18,7 @@
 }
 
 .banner-text-container{
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,6 +34,14 @@
 @media (max-width: 576px) {
 .banner-text-container{
     width: 100%;
+}
+
+.banner-text-container > p{
+    display: -webkit-box;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3; /* 제한할 텍스트의 줄 수 */
+    padding: 0 1rem;
 }
 } 
  

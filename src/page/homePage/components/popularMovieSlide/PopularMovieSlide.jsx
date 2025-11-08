@@ -8,7 +8,7 @@ const PopularMovieSlide = () => {
 
   return (
     <div>
-      <MovieSlide movies={data.results} title={'Popular Movies'} responsive={responsive}></MovieSlide>
+      <MovieSlide movies={data.results} title={'인기 영화'} responsive={responsive}></MovieSlide>
     </div>
   )
 }

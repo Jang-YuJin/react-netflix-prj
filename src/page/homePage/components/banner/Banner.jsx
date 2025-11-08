@@ -24,6 +24,7 @@ const Banner = () => {
           delay: 7000,
           disableOnInteraction: false,
         }}
+      className='banner-container'
     >
       {bannerMovies?.map((movie, index) => 
         <SwiperSlide key={index} style={{
@@ -33,7 +34,7 @@ const Banner = () => {
                 <h1>{movie.title}</h1>
                 <p>{movie.overview}</p>
                 <div>
-                <Button variant="danger" size='lg'>▶ Play</Button>{/* TODO: 재생기능 추가해야함 */}
+                <Button variant="danger" size='lg'>▶ 재생</Button>{/* TODO: 재생기능 추가해야함 */}
                 </div>
             </div>
         </SwiperSlide>)}

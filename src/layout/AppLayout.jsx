@@ -1,5 +1,5 @@
-import React from 'react'
-import { Outlet } from 'react-router'
+import React, { useState } from 'react'
+import { Outlet, useNavigate } from 'react-router'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -8,6 +8,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import './AppLayout.style.css'
 
 const AppLayout = () => {
+  const [keyword, setKeyword] = useState('');
+  const navigate = useNavigate();
+
+  const searchMovie = () => {
+    console.log('!!!');
+    navigate(`/movies?keyword=${keyword}`);
+    setKeyword('');
+  };
+
   return (
     <div>
       <Navbar expand="lg" className="navbar-dark bg-black">
@@ -20,18 +29,20 @@ const AppLayout = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/movies">Movies</Nav.Link>
+              <Nav.Link href="/">홈으로</Nav.Link>
+              <Nav.Link href="/movies">영화</Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Form.Control
                 type="search"
-                placeholder="Search"
+                placeholder="영화를 검색하세요."
                 className="me-2 bg-dark"
                 aria-label="Search"
                 data-bs-theme="dark"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
               />
-              <Button variant="outline-danger">Search</Button>
+              <Button className='search-btn' variant="outline-danger" onClick={searchMovie}>검색</Button>
             </Form>
           </Navbar.Collapse>
         </Container>

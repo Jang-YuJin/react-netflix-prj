@@ -1,7 +1,20 @@
 import React from 'react'
 import './MovieCard.style.css'
+import { useMoviesGenre } from '../../hooks/useGenres'
 
 const MovieCard = ({movie}) => {
+    const {data} = useMoviesGenre();
+
+    const showGenreName = (idList) => {
+      if(!idList) return [];
+
+      const genreNameList = idList.map((id) => {
+        const genre = data.genres.find((item) => item.id === id);
+        return genre.name;
+      });
+
+      return genreNameList;
+    };
 
     return (
     <div className="movie-card">
@@ -10,11 +23,12 @@ const MovieCard = ({movie}) => {
         alt={movie.title}
         className="image"
       />
-      <div className="overlay">
+      <div className="movie-info">
         <h3 className="title">{movie.title}</h3>
         <div className="genre-container">
-          {movie.genre_ids.map((genre) => 
-            <span>{genre}</span>)}
+          {showGenreName(movie.genre_ids).map((genre) => 
+            <span>{genre}</span>
+            )}
         </div>
         <div>
           {movie.adult ? <span>🔞</span> : ''}

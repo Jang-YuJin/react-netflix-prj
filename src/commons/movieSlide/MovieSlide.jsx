@@ -13,7 +13,7 @@ const MovieSlide = ({ movies, title, responsive }) => {
             <Carousel
                 swipeable={false}
                 draggable={false}
-                showDots={true}
+                showDots={false}
                 responsive={responsive}
                 infinite={true}
                 autoPlay={true}

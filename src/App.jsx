@@ -20,9 +20,8 @@ function App() {
             <Route index element={<MoviesPage></MoviesPage>}></Route>
             <Route path=':id' element={<MovieDetailPage></MovieDetailPage>}></Route>
           </Route>
+          <Route path='*' element={<NotFoundPage></NotFoundPage>}></Route>
         </Route>
-
-        <Route path='*' element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
     </>
   )
