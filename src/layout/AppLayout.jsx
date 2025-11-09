@@ -12,7 +12,6 @@ const AppLayout = () => {
   const navigate = useNavigate();
 
   const searchMovie = () => {
-    console.log('!!!');
     navigate(`/movies?keyword=${keyword}`);
     setKeyword('');
   };

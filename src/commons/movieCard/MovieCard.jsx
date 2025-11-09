@@ -4,7 +4,6 @@ import { useMoviesGenre } from '../../hooks/useGenres'
 
 const MovieCard = ({movie}) => {
     const {data} = useMoviesGenre();
-console.log(movie);
     const showGenreName = (idList) => {
       if(!idList) return [];
 

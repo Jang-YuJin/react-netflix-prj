@@ -123,12 +123,15 @@ const MoviesPage = () => {
             </Col>
             <Col lg={9} xs={12}>
               <Row>
-              {movies?.results.map((movie, index) => 
+              {movies.results.length === 0 ? <div className='no-result'>검색 결과가 없습니다.</div> 
+              : movies.results.map((movie, index) => 
                 <Col key={index} lg={3} xs={12}>
                   <MovieCard movie={movie}></MovieCard>
-                </Col>
-              )}
+                </Col>)
+              }
               </Row>
+              {movies.results.length === 0 ? ''
+              :
               <div className='page-container'>
                 <ReactPaginate
                   nextLabel=">"
@@ -152,6 +155,7 @@ const MoviesPage = () => {
                   forcePage={page-1}
                 ></ReactPaginate>
               </div>
+              }
             </Col>
           </Row>
         </Container>

@@ -120,6 +120,23 @@
     margin-top: 20px;
 }
 
+.no-result{
+  display: flex;
+  justify-content: center;
+  margin-top: 100px !important;
+}
+
+.page-link{
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ddd !important;
+}
+
+.page-item.active > .page-link{
+  background-color: rgba(229, 9, 20, 0.4) !important;
+  border-color: rgba(229, 9, 20, 0.4) !important;
+  color: #fff !important;
+}
+
 @media (max-width: 991px) {
   .search-container {
     position: fixed;
