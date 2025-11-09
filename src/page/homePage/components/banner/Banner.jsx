@@ -28,7 +28,7 @@ const Banner = () => {
     >
       {bannerMovies?.map((movie, index) => 
         <SwiperSlide key={index} style={{
-            backgroundImage: 'url(' + `https://media.themoviedb.org/t/p/w1066_and_h600_bestv2${movie.poster_path}` + ')'
+            backgroundImage: !movie.poster_path ? 'url(./no_img.png)' : `url(https://media.themoviedb.org/t/p/w1066_and_h600_bestv2${movie.poster_path})`
         }} className='banner-img'>
             <div className='banner-text-container'>
                 <h1>{movie.title}</h1>

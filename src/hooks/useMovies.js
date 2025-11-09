@@ -46,14 +46,41 @@ export const useUpcomingMoviesQuery = () => {
     })
 }
 
-const fetchSearchMovie = (keyword, page) => {
-    return !keyword ? api.get(`/movie/popular?language=ko-kr&page=${page}`) : api.get(`/search/movie?language=ko-kr&query=${keyword}&&page=${page}`);
+const fetchSearchMovie = (keyword, sort, startDate, endDate, rating, selectedGenres, page) => {
+    let addr = '';
+
+    if(!keyword){
+        if(sort === '' && startDate == '' && endDate === '' && rating === 0 && selectedGenres.length === 0){
+            addr = `/movie/popular?language=ko-kr&page=${page}`;
+        } else{
+            addr = `/discover/movie?language=ko-kr&page=${page}`;
+            if(sort !== ''){
+                addr += `&sort_by=${sort}`;
+            }
+            if(startDate !== ''){
+                addr += `&primary_release_date.gte=${startDate}`;
+            }
+            if(endDate !== ''){
+                addr += `&primary_release_date.lte=${endDate}`;
+            }
+            if(rating !== 0){
+                addr += `&vote_average.gte=${rating}`;
+            }
+            if(selectedGenres.length !== 0){
+                let genre = selectedGenres.join('|');
+                addr += `&with_genres=${genre}`;
+            }
+        }
+    } else{
+        addr = `/search/movie?language=ko-kr&query=${keyword}&&page=${page}`;
+    }
+    return api.get(addr);
 };
 
-export const useSearchMovie = (keyword, page) => {
+export const useSearchMovie = (keyword, sort, startDate, endDate, rating, selectedGenres, page) => {
     return useQuery({
-        queryKey: ['movie-search', {keyword, page}],
-        queryFn: () => fetchSearchMovie(keyword, page),
+        queryKey: ['movie-search', {keyword, sort, startDate, endDate, rating, selectedGenres, page}],
+        queryFn: () => fetchSearchMovie(keyword, sort, startDate, endDate, rating, selectedGenres, page),
         suspense: true,
         useErrorBoundary: true,
         throwOnError: true,

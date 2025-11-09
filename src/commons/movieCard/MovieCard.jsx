@@ -4,7 +4,7 @@ import { useMoviesGenre } from '../../hooks/useGenres'
 
 const MovieCard = ({movie}) => {
     const {data} = useMoviesGenre();
-
+console.log(movie);
     const showGenreName = (idList) => {
       if(!idList) return [];
 
@@ -19,7 +19,7 @@ const MovieCard = ({movie}) => {
     return (
     <div className="movie-card">
       <img
-        src={`https://media.themoviedb.org/t/p/w440_and_h660_face${movie.poster_path}`}
+        src={!movie.poster_path ? '/no_img.png' : `https://media.themoviedb.org/t/p/w440_and_h660_face${movie.poster_path}`}
         alt={movie.title}
         className="image"
       />
