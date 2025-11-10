@@ -16,6 +16,14 @@ const AppLayout = () => {
     setKeyword('');
   };
 
+  const searchMovieKeyDown = (e) => {
+    e.preventDefault();
+    if(e.key === 'Enter'){
+      navigate(`/movies?keyword=${keyword}`);
+      setKeyword('');
+    }
+  };
+
   return (
     <div>
       <Navbar expand="lg" className="navbar-dark bg-black">
@@ -29,7 +37,7 @@ const AppLayout = () => {
               navbarScroll
             >
               <Nav.Link href="/">홈으로</Nav.Link>
-              <Nav.Link href="/movies">영화</Nav.Link>
+              <Nav.Link href="/movies">영화탐색</Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Form.Control
@@ -40,6 +48,7 @@ const AppLayout = () => {
                 data-bs-theme="dark"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
+                onKeyDown={(e) => searchMovieKeyDown(e)}
               />
               <Button className='search-btn' variant="outline-danger" onClick={searchMovie}>검색</Button>
             </Form>

@@ -1,9 +1,12 @@
 import React from 'react'
 import './MovieCard.style.css'
 import { useMoviesGenre } from '../../hooks/useGenres'
+import { useNavigate } from 'react-router';
 
 const MovieCard = ({movie}) => {
     const {data} = useMoviesGenre();
+    const navigate = useNavigate();
+
     const showGenreName = (idList) => {
       if(!idList) return [];
 
@@ -15,8 +18,12 @@ const MovieCard = ({movie}) => {
       return genreNameList;
     };
 
+    const goToMovieDetail = (id) => {
+      navigate(`/movies/${id}`);
+    };
+
     return (
-    <div className="movie-card">
+    <div className="movie-card" onClick={() => {goToMovieDetail(movie.id)}}>
       <img
         src={!movie.poster_path ? '/no_img.png' : `https://media.themoviedb.org/t/p/w440_and_h660_face${movie.poster_path}`}
         alt={movie.title}
