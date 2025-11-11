@@ -17,8 +17,8 @@ const AppLayout = () => {
   };
 
   const searchMovieKeyDown = (e) => {
-    e.preventDefault();
     if(e.key === 'Enter'){
+      e.preventDefault();
       navigate(`/movies?keyword=${keyword}`);
       setKeyword('');
     }
