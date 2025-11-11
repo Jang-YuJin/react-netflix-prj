@@ -14,7 +14,7 @@ export const usePopularMoviesQuery = () => {
         throwOnError: true,
         select: (data) => data.data
     })
-}
+};
 
 const fetchTopRatedMovies = () => {
     return api.get(`/movie/top_rated?language=ko-kr`);
@@ -29,7 +29,7 @@ export const useTopRatedMoviesQuery = () => {
         throwOnError: true,
         select: (data) => data.data
     })
-}
+};
 
 const fetchUpcomingMovies = () => {
     return api.get(`/movie/upcoming?language=ko-kr`);
@@ -44,7 +44,7 @@ export const useUpcomingMoviesQuery = () => {
         throwOnError: true,
         select: (data) => data.data
     })
-}
+};
 
 const fetchSearchMovie = (keyword, sort, startDate, endDate, rating, selectedGenres, page) => {
     let addr = '';
@@ -81,6 +81,21 @@ export const useSearchMovie = (keyword, sort, startDate, endDate, rating, select
     return useQuery({
         queryKey: ['movie-search', {keyword, sort, startDate, endDate, rating, selectedGenres, page}],
         queryFn: () => fetchSearchMovie(keyword, sort, startDate, endDate, rating, selectedGenres, page),
+        suspense: true,
+        useErrorBoundary: true,
+        throwOnError: true,
+        select: (data) => data.data
+    })
+};
+
+const fetchGetMovie = (id) => {
+    return api.get(`/movie/${id}?language=ko-kr`);
+};
+
+export const useGetMovie = (id) => {
+    return useQuery({
+        queryKey: ['movie'],
+        queryFn: () => fetchGetMovie(id),
         suspense: true,
         useErrorBoundary: true,
         throwOnError: true,

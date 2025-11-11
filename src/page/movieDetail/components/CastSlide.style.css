@@ -1,0 +1,50 @@
+.cast-wrap {
+  display: flex;
+  gap: 12px;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+
+  max-width: 100%;
+  box-sizing: border-box;
+
+  /* 핵심 추가 */
+  min-width: 0; /* 부모 grid 영향 방지 */
+}
+
+/* 스크롤 영역이 부모 밖으로 튀는 것 방지 */
+.detail-main .cast-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* 스크롤바 예쁘게 (선택사항) */
+.cast-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+.cast-wrap::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+.cast-wrap::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.cast-card {
+  flex: 0 0 auto; /* flex shrink 방지 */
+  width: 200px;
+  text-align: center;
+  color: #fff;
+}
+
+.cast-img {
+  width: 180px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
