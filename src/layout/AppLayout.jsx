@@ -8,10 +8,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import './AppLayout.style.css'
 import authenticateStore from '../stores/authenticateStore';
 import { Link } from 'react-router-dom';
+import movieStore from '../stores/movieStore';
 
 const AppLayout = () => {
   const [keyword, setKeyword] = useState('');
   const {authenticate, user, logout} = authenticateStore();
+  const {editLikeMovie} = movieStore();
   const navigate = useNavigate();
 
   const searchMovie = () => {
@@ -31,6 +33,7 @@ const AppLayout = () => {
     if(!authenticate){
       navigate('/login');
     }else{
+      editLikeMovie([]);
       logout();
     }
   1};
