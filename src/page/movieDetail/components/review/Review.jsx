@@ -7,6 +7,7 @@ const Review = ({id}) => {
   const [reviewPage, setReviewPage] = useState(1);
   const {data:review} = useReview(id, reviewPage);
   const [expanded, setExpanded] = useState({});
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 430);
 
   useEffect(() => {
     setReviewPage(1);
@@ -20,6 +21,12 @@ const Review = ({id}) => {
   const handleReviewPageClick = ({selected}) => {
     setReviewPage(selected + 1);
   };
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 430);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div>
@@ -38,7 +45,7 @@ const Review = ({id}) => {
                 <div className={`review-text ${expanded[item.id] ? 'expanded' : ''}`}>
                 {item.content}
                 </div>
-                {(item.content?.split('\n').join(' ').length > 630) && (
+                {(item.content?.split('\n').join(' ').length > (isMobile ? 100 : 630)) && (
                   <button className="btn-more" onClick={() => toggleExpand(item.id)}>
                     {expanded[item.id] ? '접기' : '더보기'}
                   </button>
