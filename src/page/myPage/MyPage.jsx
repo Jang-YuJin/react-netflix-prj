@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './MyPage.style.css'
 import authenticateStore from '../../stores/authenticateStore'
 import movieStore from '../../stores/movieStore';
 import LikeMovieCard from './components/LikeMovieCard';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router';
 
 const MyPage = () => {
-  const {user} = authenticateStore();
+  const {user, authenticate} = authenticateStore();
   const {likeMovie, editLikeMovie} = movieStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!authenticate){
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <div className="mypage-container">

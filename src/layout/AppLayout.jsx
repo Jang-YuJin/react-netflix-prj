@@ -35,6 +35,7 @@ const AppLayout = () => {
     }else{
       editLikeMovie([]);
       logout();
+      navigate('/');
     }
   1};
 
