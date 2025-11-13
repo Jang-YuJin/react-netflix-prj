@@ -94,8 +94,38 @@ const fetchGetMovie = (id) => {
 
 export const useGetMovie = (id) => {
     return useQuery({
-        queryKey: ['movie'],
+        queryKey: ['movie', id],
         queryFn: () => fetchGetMovie(id),
+        suspense: true,
+        useErrorBoundary: true,
+        throwOnError: true,
+        select: (data) => data.data
+    })
+};
+
+const fetchRecommendMovie = (id) => {
+    return api.get(`/movie/${id}/recommendations?language=ko-kr`);
+};
+
+export const useRecommendMovie = (id) => {
+    return useQuery({
+        queryKey: ['recommendMovie', id],
+        queryFn: () => fetchRecommendMovie(id),
+        suspense: true,
+        useErrorBoundary: true,
+        throwOnError: true,
+        select: (data) => data.data
+    })
+};
+
+const fetchTrailerMovie = (id) => {
+    return api.get(`/movie/${id}/videos`);
+};
+
+export const useTrailerMovie = (id) => {
+    return useQuery({
+        queryKey: ['trailerMovie', id],
+        queryFn: () => fetchTrailerMovie(id),
         suspense: true,
         useErrorBoundary: true,
         throwOnError: true,

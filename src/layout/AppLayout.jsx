@@ -6,9 +6,12 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './AppLayout.style.css'
+import authenticateStore from '../stores/authenticateStore';
+import { Link } from 'react-router-dom';
 
 const AppLayout = () => {
   const [keyword, setKeyword] = useState('');
+  const {authenticate, user, logout} = authenticateStore();
   const navigate = useNavigate();
 
   const searchMovie = () => {
@@ -24,11 +27,23 @@ const AppLayout = () => {
     }
   };
 
+  const goToLogin = () => {
+    if(!authenticate){
+      navigate('/login');
+    }else{
+      logout();
+    }
+  1};
+
+  const goToMyPage = () => {
+    navigate('/mypage');
+  };
+
   return (
     <div>
       <Navbar expand="lg" className="navbar-dark bg-black">
         <Container fluid>
-          <Navbar.Brand href="/"><img src={'./Netflix_Logo.png'} className='logo-img'></img></Navbar.Brand>
+          <Navbar.Brand as={Link} to="/"><img src={'./Netflix_Logo.png'} className='logo-img'></img></Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -36,8 +51,8 @@ const AppLayout = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="/">홈으로</Nav.Link>
-              <Nav.Link href="/movies">영화탐색</Nav.Link>
+              <Nav.Link as={Link} to="/">홈으로</Nav.Link>
+              <Nav.Link as={Link} to="/movies">영화탐색</Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Form.Control
@@ -52,6 +67,15 @@ const AppLayout = () => {
               />
               <Button className='search-btn' variant="outline-danger" onClick={searchMovie}>검색</Button>
             </Form>
+            {authenticate 
+            && 
+            <Nav className="ms-lg-3 my-lg-0 my-2">
+              <Button variant="danger" onClick={goToMyPage} className='user-btn'>{user.id}</Button>
+            </Nav>
+            }
+            <Nav className="ms-lg-2 my-lg-0 my-2">
+              <Button variant="outline-danger" onClick={goToLogin}>{authenticate ? '로그아웃' : '로그인'}</Button>
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>

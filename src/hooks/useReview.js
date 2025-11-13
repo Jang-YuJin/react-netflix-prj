@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
 import api from '../utils/api'
 
-const fetchGetCast = (id) => {
-    return api.get(`/movie/${id}/credits?language=ko-kr`);
+const fetchReview = (id, page) => {
+    return api.get(`/movie/${id}/reviews?page=${page}`);
 };
 
-export const useGetCast = (id) => {
+export const useReview = (id, page) => {
     return useQuery({
-        queryKey: ['cast', id],
-        queryFn: () => fetchGetCast(id),
+        queryKey: ['review', id, page],
+        queryFn: () => fetchReview(id, page),
         suspense: true,
         useErrorBoundary: true,
         throwOnError: true,

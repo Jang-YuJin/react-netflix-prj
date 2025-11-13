@@ -1,0 +1,89 @@
+.reviews-block {
+  background-color: #0f0f0f; /* 약간 밝은 블랙톤 */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 40px;
+  color: #fff;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.reviews-header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.reviews-meta {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 16px 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.review-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #eee;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.review-text.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.btn-more {
+  background: none;
+  border: none;
+  color: rgba(255, 0, 0, 0.4);
+  font-weight: 600;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-more:hover {
+  color: rgba(255, 0, 0, 0.8);
+}
+
+.review-author {
+  text-align: right;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #bbb;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 8px;
+}
+
+.reviews-pager {
+  margin-top: 25px;
+  text-align: center;
+}

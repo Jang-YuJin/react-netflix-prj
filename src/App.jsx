@@ -7,12 +7,16 @@ import MovieDetailPage from './page/movieDetail/MovieDetailPage'
 import NotFoundPage from './page/notFoundPage/NotFoundPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Analytics } from '@vercel/analytics/react';
+import ScrollToTop from './utils/scrollToTop'
+import LoginPage from './page/loginPage/LoginPage'
+import MyPage from './page/myPage/MyPage'
 
 function App() {
 
   return (
     <>
       <Analytics></Analytics>
+      <ScrollToTop></ScrollToTop>
       <Routes>
         <Route path='/' element={<AppLayout></AppLayout>}>
           <Route index element={<HomePage></HomePage>}></Route>
@@ -20,6 +24,8 @@ function App() {
             <Route index element={<MoviesPage></MoviesPage>}></Route>
             <Route path=':id' element={<MovieDetailPage></MovieDetailPage>}></Route>
           </Route>
+          <Route path='/login' element={<LoginPage></LoginPage>}></Route>
+          <Route path='/mypage' element={<MyPage></MyPage>}></Route>
           <Route path='*' element={<NotFoundPage></NotFoundPage>}></Route>
         </Route>
       </Routes>

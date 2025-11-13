@@ -6,3 +6,7 @@
 .search-btn{
     width: 70px;
 }
+
+.user-btn{
+    border-radius: 100px !important;
+}
