@@ -11,11 +11,12 @@ const MovieDisplay = () => {
   const handlePageClick = ({selected}) => {
     settingPage(selected + 1);
   };
-
+console.log(movies);
   return (
     <div>
         <Row>
-          {movies?.results?.length === 0 
+          {movies?.total_results > 0 && <div className='mb-3 text-white-50'><span className='text-white'>{movies?.total_results > 10000 ? Number(10000).toLocaleString() : movies?.total_results.toLocaleString()}</span>개의 영화가 존재합니다.</div>}
+          {movies?.total_results === 0 
             ? <div className='no-result'>검색 결과가 없습니다.</div> 
             : movies?.results?.map((movie, index) => 
             <Col key={index} lg={3} xs={12}>
@@ -23,7 +24,7 @@ const MovieDisplay = () => {
             </Col>)
           }
         </Row>
-        {movies?.results?.length > 0 &&
+        {movies?.total_results > 0 &&
           <div className='page-container'>
               <ReactPaginate
               key={page}

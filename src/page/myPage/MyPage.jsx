@@ -20,7 +20,7 @@ const MyPage = () => {
   return (
     <div className="mypage-container">
       <h2 className="mypage-greeting">{user?.id || '사용자'}님 안녕하세요!</h2>
-      <h3 className="mypage-subtitle">추가한 영화 목록</h3>
+      <h3 className="mypage-subtitle">추가한 영화 목록{likeMovie.length > 0 && <span className='font-s'> ({likeMovie.length.toLocaleString()}개의 영화를 추가했습니다.)</span>}</h3>
 
       <Container>
         <Row>

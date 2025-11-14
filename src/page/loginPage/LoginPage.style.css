@@ -3,11 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vmin;
+    min-height: 70vh;
+    padding: 0 20px; /* 모바일 여백 */
 }
 
 .id-input, .password-input{
-    width: 330px;
+    width: 300px;
     height: 40px;
     margin: 10px 0;
     padding: 5px;
@@ -20,7 +21,7 @@
 }
 
 .login-btn{
-    width: 330px;
+    width: 300px;
     height: 40px;
     background-color: rgba(255, 0, 0, 0.4);
     font-weight: bolder;
@@ -48,4 +49,39 @@
 
 .search-password:hover, .search-id:hover, .signup:hover{
     color: rgba(255, 255, 255, 0.8);
+}
+
+/* 작은 모바일 (SE, 갤럭시 mini 같은 360px 이하) */
+@media (max-width: 360px) {
+    .id-input, .password-input, .login-btn {
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .find-login-info-container {
+        font-size: 0.8rem;
+    }
+}
+
+/* 큰 모바일 ~ 태블릿 */
+@media (min-width: 600px) {
+    .login-form-container {
+        min-height: 60vh;
+    }
+
+    .id-input, .password-input, .login-btn {
+        height: 50px;
+        font-size: 1rem;
+    }
+}
+
+/* 데스크톱 */
+@media (min-width: 1024px) {
+    .login-form-container {
+        min-height: 60vmin;
+    }
+    
+    .id-input, .password-input, .login-btn {
+        max-width: 350px;
+    }
 }
