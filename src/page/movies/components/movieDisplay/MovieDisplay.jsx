@@ -11,7 +11,7 @@ const MovieDisplay = () => {
   const handlePageClick = ({selected}) => {
     settingPage(selected + 1);
   };
-console.log(movies);
+  
   return (
     <div>
         <Row>

@@ -5,7 +5,6 @@ import './MovieTrailer.style.css'
 
 const MovieTrailer = ({id, showTrailer, handleTrailerClose}) => {
   const {data} = useTrailerMovie(id);
-  console.log(data);
   const trailer = data?.results?.find((item) => {
     return item.type === 'Trailer';
   });
